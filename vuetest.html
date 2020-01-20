@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    button.active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div class="checkbox">
+  <button @click="changeData(1)" :class="{active : isActive}">1</button>
+  <button @click="changeData(2)">2</button>
+  <button @click="changeData(3)">3</button>
+  <template v-if="data == 1">
+    <h1>Value 1</h1>
+  </template>
+  <template v-else-if="data == 2">
+    <h1>Value 2</h1>
+  </template>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el:'.checkbox',
+    data(){
+      return {
+        data: '',
+        isActive: false
+      }
+    },
+    methods:{
+      changeData(data){
+        this.data = data;
+        console.log(this)
+      }
+    }
+  });
+</script>
+</body>
+</html>

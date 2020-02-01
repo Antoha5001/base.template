@@ -1,6 +1,10 @@
+@import url(font.css);
+@import '~normalize.css';
+
 html, body{
   background-color: #111112;
   height: 100%;
+  font-family: 'PT Sans', sans-serif;
 }
 .wrapper{
   display: flex;
@@ -36,4 +40,13 @@ section{
   background: #161725;
   color: white;
   padding: 5px;
+}
+.band_news-title{
+  padding: 5px 10px;
+  text-transform: uppercase;
+  font-size: 18px;
+  background: rgb(252,51,72);
+  background: linear-gradient(90deg, rgba(252,51,72,1) 27%, rgba(254,143,78,1) 100%);
+  font-weight: 800;
+  color: white;
 }

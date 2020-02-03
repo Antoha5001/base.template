@@ -1,8 +1,15 @@
 @import url(font.css);
 @import '~normalize.css';
-
+/*
+#14161B
+#1B1D24
+#22252C
+#35373D
+#848B96
+#16171C
+*/
 html, body{
-  background-color: #111112;
+  background-color: #14161B;
   height: 100%;
   font-family: 'PT Sans', sans-serif;
 }
@@ -14,7 +21,7 @@ html, body{
 .container{
   max-width: 1280px;
   display: flex;
-  background: white;
+  background: #1B1D24;
   margin: auto;
   padding: 3px 5px;
 }
@@ -36,12 +43,27 @@ section{
 
   height: 40px;
 }
-.content-nav{
-  background: #161725;
+.left-content-nav{
+  background: #22252C;
+  border: 1px solid #16171C;
   color: white;
   padding: 5px;
 }
-.band_news-title{
+.left-content-nav_title{
+  background: #35373D;
+  color: white;
+  padding: 4px;
+  margin-bottom: 3px;
+}
+.left-content-nav_title a{
+  display: block;
+  text-decoration: none;
+  color: white;
+}
+.band-news_wrapper{
+  padding: 3px;
+}
+.band-news_title{
   padding: 5px 10px;
   text-transform: uppercase;
   font-size: 18px;
@@ -49,4 +71,21 @@ section{
   background: linear-gradient(90deg, rgba(252,51,72,1) 27%, rgba(254,143,78,1) 100%);
   font-weight: 800;
   color: white;
+}
+.band-news_content-box{
+  background: #AFB4BB;
+  padding: 5px;
+}
+.band-news_content-box a{
+  text-decoration: none;
+  color: #14161B;
+}
+.band-news_content-box a:hover{
+  text-decoration: underline;
+}
+.band-news_content-box h3{
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 3px;
+  margin-top: 3px;
 }

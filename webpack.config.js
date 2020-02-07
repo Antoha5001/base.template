@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
+
 
 console.log(path.resolve(__dirname));
 const config = {
@@ -19,6 +21,7 @@ const config = {
       template: './index.html'
     }),
     new CleanWebpackPlugin(),
+    new HtmlWebpackInlineSVGPlugin()
   ],
   module: {
     rules: [
@@ -48,7 +51,11 @@ const config = {
         use: [
           'file-loader'
         ]
-      }
+      },
+       {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+    }
       ]
   }
 };

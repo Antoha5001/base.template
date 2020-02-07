@@ -30,6 +30,14 @@ const config = {
         ]
       },
       {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
         test: /\.(png|jpe?g|svg|gif)$/,
         use: [
           'file-loader'

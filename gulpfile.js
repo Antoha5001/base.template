@@ -4,6 +4,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const del = require('del');
+const svgSprite = require('gulp-svg-sprite');
 const pug = require('gulp-pug');
 const gulpSass = require('gulp-sass');
 gulpSass.compiler = require('node-sass');
@@ -28,7 +29,22 @@ function html() {
     .pipe(pug({
       pretty:true
     }))
-    .pipe(dest('build/html'))
+    .pipe(dest('.'))
+    .pipe(browserSync.stream());
+}
+config = {
+    shape: {
+        dest: '.'
+    },
+    mode: {
+     
+    }
+  };
+function svg(){
+    console.log(123)
+    return src('./src/img/logo-02.svg')
+    .pipe(svgSprite(config))
+    .pipe(dest('./build/img'))
 }
 
 function cssBuild() {
@@ -72,6 +88,7 @@ function watchAll(){
     });
 
     watch('./src/css/**/*.css', css);
+    watch('./src/pug/**/*.pug', html);
     watch('./src/scss/**/*.scss', gulp_sass);
     watch('./src/js/**/*.js', scripts);
     // gulp.watch('./*.php').on('change', browserSync.reload);
@@ -83,6 +100,7 @@ function clean(){
 }
 
 exports.css = css;
+exports.svg = svg;
 exports.html = html;
 exports.gulp_sass = gulp_sass;
 exports.scripts = scripts;

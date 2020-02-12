@@ -1,8 +1,41 @@
-doctype html
-html(lang="ru")
-  include src/pug/header.pug
+extends src/pug/base.pug
+block variables
 
+  mixin navLink(href, link)
+    .left-content-nav_title
+      a(href=href) #{link}
 
-  body
-    .wrapper
-      include src/pug/footer.pug
+  mixin bandContentLink(href, link)
+    a(href=href)
+      h3 #{link}
+
+block content
+  section.header
+    .container
+      .logo(style="width: 170px;")
+        img(src="build/img/logo-02.svg", alt="alt", style="display: block")
+
+  section.content-wrapper
+    .container.container_grid
+
+      .left-content-nav
+        nav
+          +navLink('#', 'Новости SOFTWARE')
+          +navLink('#', 'Новости HARDWARE')
+          +navLink('#', 'Обзор Железа')
+      
+      .band-news_wrapper
+        .band-news_title Новости SOFTWARE
+        .band-news_content-box
+          +bandContentLink('#', 'Softline запустила центр мониторинга киберугроз и реагирования на инциденты ИБ')
+          +bandContentLink('#', 'Samsung действительно работает над преемником гибкого смартфона Galaxy Fold')
+          +bandContentLink('#', 'Энтузиаст показал возможный концептуальный дизайн нового центра управления Windows 10')
+
+      .band-news_wrapper
+        .band-news_title Новости HARDWARE
+        .band-news_content-box
+          +bandContentLink('#', 'Softline запустила центр мониторинга киберугроз и реагирования на инциденты ИБ')
+          +bandContentLink('#', 'Samsung действительно работает над преемником гибкого смартфона Galaxy Fold')
+          +bandContentLink('#', 'Энтузиаст показал возможный концептуальный дизайн нового центра управления Windows 10')
+
+      .right-sidebar

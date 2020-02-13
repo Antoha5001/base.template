@@ -22,9 +22,14 @@ html, body{
   padding: 3px 5px;
 }
 
-.container_grid{
+.container_grid_4{
   display: grid;
   grid-template-columns: 170px 1fr 1fr 170px;
+  grid-gap: 3px;
+}
+.container_grid_3{
+  display: grid;
+  grid-template-columns: 170px 1fr 170px;
   grid-gap: 3px;
 }
 .content-wrapper{
@@ -71,7 +76,7 @@ section{
   color: white;
 }
 .band-news_content-box{
-  background: #b1b3b3;
+  background: #ffffff;
   padding: 5px;
 }
 .band-news_content-box a{

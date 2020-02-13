@@ -1,0 +1,39 @@
+extends include/base.pug
+block variables
+
+  mixin navLink(href, link)
+    .left-content-nav_title
+      a(href=href) #{link}
+
+  mixin bandContentLink(href, link)
+    a(href=href).band-news_content-link
+      h3 #{link}
+
+block content
+
+  section.content-wrapper
+    .container.container_grid_3
+
+      .left-content-nav
+        nav
+          +navLink('#', 'Новости SOFTWAREE')
+          +navLink('#', 'Новости HARDWARE')
+          +navLink('#', 'Обзор Железа')
+
+      .band-news_wrapper
+        .band-news_title Новости SOFTWARE
+        .band-news_content-box
+          .news-list_single_wrapper
+            h2.news-list_single_title ASUS запустила акцию ко дню всех влюбленных
+            p Компания ASUS запустила акцию ко Дню святого Валентина. В период с 10 по 16 февраля каждому покупателю ноутбука серии ZenBook или VivoBook в фирменном магазине ASUS Shop преподнесут в подарок фитнес-часы ASUS VivoWatch BP. Предложение действительно до тех пор, пока подарки есть в наличии.
+            img(src="build/img/photo-00.jpg", alt="", style="display:block;max-width:100%;margin:auto;")
+            p Стильные и компактные ноутбуки премиального класса ASUS серии ZenBook отличаются высокой производительностью и функциональностью. Серия тонких и легких ноутбуков в ярком молодёжном дизайне ASUS VivoBook S нацелена на тех, кто хочет выделяться из толпы.            
+            img(src="build/img/photo-00.jpg", alt="", style="display:block;max-width:100%;margin:auto;")
+            p Компактные и лёгкие фитнес-часы VivoWatch BP обладают функцией мониторинга артериального давления, пульса и физической активности. Благодаря фирменной технологии HealthAI для анализа состояния организма владелец VivoWatch BP получит персональные рекомендации по поддержанию здорового образа жизни.
+
+
+          +bandContentLink('#', 'Softline запустила центр мониторинга киберугроз и реагирования на инциденты ИБ')
+          +bandContentLink('#', 'Samsung действительно работает над преемником гибкого смартфона Galaxy Fold')
+          +bandContentLink('#', 'Энтузиаст показал возможный концептуальный дизайн нового центра управления Windows 10')
+
+      .right-sidebar

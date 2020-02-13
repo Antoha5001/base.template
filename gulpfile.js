@@ -6,6 +6,7 @@ const uglify = require('gulp-uglify');
 const del = require('del');
 const svgSprite = require('gulp-svg-sprite');
 const pug = require('gulp-pug');
+const imagemin = require('gulp-imagemin');
 const gulpSass = require('gulp-sass');
 gulpSass.compiler = require('node-sass');
 const browserSync = require('browser-sync').create();
@@ -25,7 +26,7 @@ const jsFiles = [
 ];
 
 function html() {
-  return src('./src/pug/*.pug')
+  return src(['./src/pug/*.pug'])
     .pipe(pug({
       pretty:true
     }))
@@ -40,10 +41,15 @@ config = {
 
     }
   };
-function svg(){
-    console.log(123)
-    return src('./src/img/logo-02.svg')
-    .pipe(svgSprite(config))
+// function svg(){
+//     return src('./src/img/logo-02.svg')
+//     .pipe(svgSprite(config))
+//     .pipe(dest('./build/img'));
+// }
+
+function image() {
+    return src('./src/img/**/*')
+    .pipe(imagemin())
     .pipe(dest('./build/img'))
 }
 
@@ -74,7 +80,7 @@ function cssBuild() {
  }
 function fonts() {
   return src('./src/fonts/**/*')
-    .pipe(dest('./build/fonts'))
+    .pipe(dest('./build/fonts'));
 }
 
 function scripts() {
@@ -105,12 +111,13 @@ function clean(){
 
 exports.css = css;
 exports.fonts = fonts;
-exports.svg = svg;
+// exports.svg = svg;
+exports.image = image;
 exports.html = html;
 exports.gulp_sass = gulp_sass;
 exports.scripts = scripts;
 exports.watch = watchAll;
-exports.build = series(clean, parallel(gulp_sass, fonts));
+exports.build = series(clean, parallel(gulp_sass, fonts, image));
 
 // gulp.task('dev', gulp.series('build', 'watch') );
 

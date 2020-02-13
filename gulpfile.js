@@ -11,7 +11,7 @@ gulpSass.compiler = require('node-sass');
 const browserSync = require('browser-sync').create();
 
 const cssFiles = [
-    "./node_modules/normalize.css/normalize.css",
+    "./node_modules/normalize.scss/normalize.scss",
     "./src/css/some.css",
     "./src/css/other.css"];
 
@@ -25,7 +25,7 @@ const jsFiles = [
 ];
 
 function html() {
-  return src('*.pug')
+  return src('./src/pug/*.pug')
     .pipe(pug({
       pretty:true
     }))
@@ -37,7 +37,7 @@ config = {
         dest: '.'
     },
     mode: {
-     
+
     }
   };
 function svg(){
@@ -66,12 +66,16 @@ function cssBuild() {
         .pipe(browserSync.stream());
  }
  function gulp_sass() {
-    return src("./src/scss/style.scss")
+    return src("./src/scss/**/*.scss")
         .pipe(gulpSass())
         // .pipe(concat('style.css'))
         .pipe(dest('./build/css/'))
         .pipe(browserSync.stream());
  }
+function fonts() {
+  return src('./src/fonts/**/*')
+    .pipe(dest('./build/fonts'))
+}
 
 function scripts() {
     return src(jsFiles)
@@ -100,12 +104,13 @@ function clean(){
 }
 
 exports.css = css;
+exports.fonts = fonts;
 exports.svg = svg;
 exports.html = html;
 exports.gulp_sass = gulp_sass;
 exports.scripts = scripts;
 exports.watch = watchAll;
-exports.build = series(clean, parallel(gulp_sass));
+exports.build = series(clean, parallel(gulp_sass, fonts));
 
 // gulp.task('dev', gulp.series('build', 'watch') );
 

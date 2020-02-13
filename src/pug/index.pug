@@ -1,4 +1,4 @@
-extends src/pug/base.pug
+extends include/base.pug
 block variables
 
   mixin navLink(href, link)
@@ -6,14 +6,10 @@ block variables
       a(href=href) #{link}
 
   mixin bandContentLink(href, link)
-    a(href=href)
+    a(href=href).band-news_content-link
       h3 #{link}
 
 block content
-  section.header
-    .container
-      .logo(style="width: 170px;")
-        img(src="build/img/logo-02.svg", alt="alt", style="display: block")
 
   section.content-wrapper
     .container.container_grid
@@ -23,7 +19,7 @@ block content
           +navLink('#', 'Новости SOFTWARE')
           +navLink('#', 'Новости HARDWARE')
           +navLink('#', 'Обзор Железа')
-      
+
       .band-news_wrapper
         .band-news_title Новости SOFTWARE
         .band-news_content-box

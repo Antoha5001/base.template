@@ -1,0 +1,16 @@
+block variables
+doctype html
+html(lang="ru")
+  include header
+
+  body
+    .wrapper
+        section.header
+          .container
+            .logo(style="width: 170px;")
+              img(src="build/img/logo-02.svg", alt="alt", style="display: block; max-width:100%;")
+
+        block content
+
+        include footer
+

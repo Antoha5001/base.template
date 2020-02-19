@@ -8,6 +8,8 @@ const svgSprite = require('gulp-svg-sprite');
 const pug = require('gulp-pug');
 const imagemin = require('gulp-imagemin');
 const gulpSass = require('gulp-sass');
+const webp = require('imagemin-webp');
+const extReplace = require('gulp-ext-replace');
 gulpSass.compiler = require('node-sass');
 const browserSync = require('browser-sync').create();
 
@@ -53,6 +55,16 @@ function image() {
     .pipe(dest('./build/img'))
 }
 
+function exportWebp(){
+    let src_path = './src/img/**/*.jpg'
+    return src(src_path)
+    .pipe(imagemin([
+        webp({quality:75})
+    ]))
+    .pipe(extReplace(".webp"))
+    .pipe(dest('./build/img'))
+}
+
 function cssBuild() {
     return src(cssFiles)
         .pipe(concat('style.css'))
@@ -74,6 +86,18 @@ function cssBuild() {
  function gulp_sass() {
     return src("./src/scss/**/*.scss")
         .pipe(gulpSass())
+        // .pipe(concat('style.css'))
+        .pipe(dest('./build/css/'))
+        .pipe(browserSync.stream());
+ }
+ function gulp_sass_build() {
+    return src("./src/scss/**/*.scss")
+        .pipe(gulpSass())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
+        .pipe(cleanCSS({level: 2}))
         // .pipe(concat('style.css'))
         .pipe(dest('./build/css/'))
         .pipe(browserSync.stream());
@@ -113,11 +137,12 @@ exports.css = css;
 exports.fonts = fonts;
 // exports.svg = svg;
 exports.image = image;
+exports.exportWebp = exportWebp;
 exports.html = html;
 exports.gulp_sass = gulp_sass;
 exports.scripts = scripts;
 exports.watch = watchAll;
-exports.build = series(clean, parallel(gulp_sass, fonts, image));
+exports.build = series(clean, parallel(gulp_sass_build, fonts, image));
 
 // gulp.task('dev', gulp.series('build', 'watch') );
 

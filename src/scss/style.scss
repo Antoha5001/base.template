@@ -74,6 +74,10 @@ section{
   background: linear-gradient(90deg, rgba(252,51,72,1) 27%, rgba(254,143,78,1) 100%);
   font-weight: 800;
   color: white;
+  a{
+    text-decoration: none;
+    color: #fff;
+  }
 }
 .band-news_content-box{
   background: #ffffff;
